@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ 
+
+<head>
+      
+    <meta charset="utf-8">
+      <title>Simple Calculator using HTML, CSS and JavaScript</title>
+      
+    <link rel="stylesheet" href="styles.css">
+</head>
+ 
+
+<body>
+     
+    <table class="calculator">
+          <tr>
+                <td colspan="3"> <input class="display-box" type="text" id="result1"  /> </td>
+             
+                <!-- clearScreen() function clears all the values -->
+                <td> <input type="button" value="Clear" onclick="clearScreen1()" id="btn" /> </td>
+         </tr>
+         <tr>
+                <td colspan="3"> <input class="display-box" type="text" id="result2"  /> </td>
+             
+                <!-- clearScreen() function clears all the values -->
+                <td> <input type="button" value="Clear" onclick="clearScreen2()" id="btn" /> </td>
+         </tr>
+          
+          <tr>
+                <centre>
+                <td> <input type="button" value="Details" onclick="getPrimesFunctionCall()" id="btn" /> </td>
+            </centre>
+             
+                <!-- calculate() function evaluates the mathematical expression -->
+                
+                
+              </tr>
+            
+    </table>
+     <h2 id="res"></h2>
+    <script type="text/javascript" src="script.js"></script>
+     
+</body>
+ 
+
+</html>
