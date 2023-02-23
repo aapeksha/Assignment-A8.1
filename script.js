@@ -7,64 +7,52 @@ function clearScreen2() {
     document.getElementById("result2").value = "";
 }
 
-// This function display values
-function display(value) {
-    document.getElementById("result").value += value;
-}
-function createTable(tableData,label,newDocument) {
-    //console.log(tableData)
-    
+function createTable(tableData, label, newDocument) {
     console.log(tableData)
     var x1 = newDocument.createElement("H4");
     var t1 = newDocument.createTextNode(label);
     x1.appendChild(t1);
     newDocument.body.appendChild(x1);
     var table = newDocument.createElement('table');
-    
+
     var tableBody = newDocument.createElement('tbody');
-    
-    tableData.forEach(function(rowData) {
+
+    tableData.forEach(function (rowData) {
         //console.log(rowData)
-      var row = newDocument.createElement('tr');
-      //row.style.padding = "2px 5px 2px 5px";
-      row.style.border="1px solid black"
-      rowData.forEach(function(cellData) {
-        var cell = newDocument.createElement('td');
-        cell.style.borderBottom = "1px solid #ddd"
-        cell.appendChild(newDocument.createTextNode(cellData));
-        row.appendChild(cell);
-      });
-  
-      tableBody.appendChild(row);
+        var row = newDocument.createElement('tr');
+        //row.style.padding = "2px 5px 2px 5px";
+        row.style.border = "1px solid black"
+        rowData.forEach(function (cellData) {
+            var cell = newDocument.createElement('td');
+            cell.style.borderBottom = "1px solid #ddd"
+            cell.appendChild(newDocument.createTextNode(cellData));
+            row.appendChild(cell);
+        });
+
+        tableBody.appendChild(row);
     });
-  
+
     table.appendChild(tableBody);
-    table.style.border="1px solid black"
+    table.style.border = "1px solid black"
     newDocument.body.appendChild(table);
-  }
+}
 // This function evaluates the expression and returns result
 function getPrimesFunctionCall() {
     let start = document.getElementById("result1").value;
     let end = document.getElementById("result2").value;
     const startTime = Date.now();
-    const [primesTable,allNumbersTable] = findPrimes(start, end);
+    const [primesTable, allNumbersTable] = findPrimes(start, end);
     const endTime = Date.now();
     console.log(primesTable)
-    if(primesTable.length > 1) {
-        win1=window.open()
-        createTable(allNumbersTable,"Result Of All Numbers", win1.document)
-        win2=window.open()
-        createTable(primesTable,"Prime Numbers",win2.document);
+    if (primesTable.length > 1) {
+        win1 = window.open()
+        createTable(allNumbersTable, "Result Of All Numbers", win1.document)
+        win2 = window.open()
+        createTable(primesTable, "Prime Numbers", win2.document);
         let res = document.getElementById("res");
-        str=`Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
+        str = `Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
         res.innerText = str
     }
-    
-    //var x3 = document.createElement("H2");
-    //str=`Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
-    //var t3 = document.createTextNode(str);
-    //x3.appendChild(t3);
-    //document.body.appendChild(x3);
 }
 
 function isPrime(num) {
@@ -80,26 +68,24 @@ function isPrime(num) {
 }
 
 function findPrimes(start, end) {
-    let primesTable = [["Numbers","Time in ms"]];
-    let allNumbersTable = [["Numbers","Result","Time in ms"]]
-    
+    let primesTable = [["Numbers", "Time in ms"]];
+    let allNumbersTable = [["Numbers", "Result", "Time in ms"]]
+
     var endTime;
     for (let i = start; i <= end; i++) {
         const startTime = Date.now();
         if (isPrime(i)) {
             endTime = Date.now();
-            allNumbersTable.push([i,"Prime",endTime - startTime])
-            primesTable.push([i,endTime - startTime])
+            allNumbersTable.push([i, "Prime", endTime - startTime])
+            primesTable.push([i, endTime - startTime])
         }
         else {
             endTime = Date.now();
-            allNumbersTable.push([i,"Normal",endTime - startTime])
+            allNumbersTable.push([i, "Normal", endTime - startTime])
         }
-        
-        //console.log(`Found ${primes.length} primes so far. Time to find prime ${i}: ${endTime - startTime} ms.`);
-    }
+   }
 
-    return [primesTable,allNumbersTable];
+    return [primesTable, allNumbersTable];
 }
 getPrimesFunctionCall()
 
