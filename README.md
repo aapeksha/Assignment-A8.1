@@ -4,4 +4,4 @@ Space Complexity for finding weather a number is prime or not is O(1) since we a
 
 If there are N numbers in a range
 Time Complexity is N*O(sqrt n).
-Space Complexity is prime or not is N*O(1).
+Space Complexity is N*O(1).
