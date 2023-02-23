@@ -1,4 +1,4 @@
-// This function clear all the values
+
 function clearScreen1() {
     document.getElementById("result1").value = "";
 }
@@ -11,21 +11,27 @@ function clearScreen2() {
 function display(value) {
     document.getElementById("result").value += value;
 }
-function createTable(tableData) {
+function createTable(tableData,label,newDocument) {
     //console.log(tableData)
-    var table = document.createElement('table');
     
-    var tableBody = document.createElement('tbody');
+    console.log(tableData)
+    var x1 = newDocument.createElement("H4");
+    var t1 = newDocument.createTextNode(label);
+    x1.appendChild(t1);
+    newDocument.body.appendChild(x1);
+    var table = newDocument.createElement('table');
+    
+    var tableBody = newDocument.createElement('tbody');
     
     tableData.forEach(function(rowData) {
         //console.log(rowData)
-      var row = document.createElement('tr');
+      var row = newDocument.createElement('tr');
       //row.style.padding = "2px 5px 2px 5px";
       row.style.border="1px solid black"
       rowData.forEach(function(cellData) {
-        var cell = document.createElement('td');
+        var cell = newDocument.createElement('td');
         cell.style.borderBottom = "1px solid #ddd"
-        cell.appendChild(document.createTextNode(cellData));
+        cell.appendChild(newDocument.createTextNode(cellData));
         row.appendChild(cell);
       });
   
@@ -34,7 +40,7 @@ function createTable(tableData) {
   
     table.appendChild(tableBody);
     table.style.border="1px solid black"
-    document.body.appendChild(table);
+    newDocument.body.appendChild(table);
   }
 // This function evaluates the expression and returns result
 function getPrimesFunctionCall() {
@@ -43,25 +49,22 @@ function getPrimesFunctionCall() {
     const startTime = Date.now();
     const [primesTable,allNumbersTable] = findPrimes(start, end);
     const endTime = Date.now();
+    console.log(primesTable)
+    if(primesTable.length > 1) {
+        win1=window.open()
+        createTable(allNumbersTable,"Result Of All Numbers", win1.document)
+        win2=window.open()
+        createTable(primesTable,"Prime Numbers",win2.document);
+        let res = document.getElementById("res");
+        str=`Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
+        res.innerText = str
+    }
     
-    var x1 = document.createElement("H4");
-    var t1 = document.createTextNode("Status of all Numbers");
-    x1.appendChild(t1);
-    document.body.appendChild(x1);
-    createTable(allNumbersTable)
-    var x2 = document.createElement("H4");
-    var t2 = document.createTextNode("Prime Numbers");
-    x2.appendChild(t2);
-    document.body.appendChild(x2);
-    createTable(primesTable);
-    let res = document.getElementById("res");
-    str=`Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
-    res.innerText = str
     //var x3 = document.createElement("H2");
     //str=`Found ${primesTable.length} primes in ${endTime - startTime} ms.`;
     //var t3 = document.createTextNode(str);
     //x3.appendChild(t3);
-    document.body.appendChild(x3);
+    //document.body.appendChild(x3);
 }
 
 function isPrime(num) {
@@ -98,5 +101,5 @@ function findPrimes(start, end) {
 
     return [primesTable,allNumbersTable];
 }
-
+getPrimesFunctionCall()
 
